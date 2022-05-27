@@ -13,6 +13,8 @@ public class Cart {
     private Long userId;
     private String name;
     private Integer count;
-    private String price;
+    private Integer count1;
+    private Integer count2;
+    private Long price;
     private String unit;
 }

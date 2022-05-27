@@ -24,11 +24,15 @@ public class CartController {
         cartService.addElementToCart(cart);
         return "Cart element successfully added";
     }
-
     @DeleteMapping("deleteCartElement/{id}")
     public String deleteCartElement(@PathVariable Long id){
         cartService.deleteCartElement(id);
         return "Cart element successfully deleted";
+    }
+
+    @GetMapping("/cartSum/{userId}")
+    public Long getCartSum (@PathVariable Long userId) {
+        return cartService.getCartSum(userId);
     }
 }
 

@@ -25,4 +25,10 @@ public class CartService {
     public void deleteCartElement(Long id) {
         cartRepository.deleteById(id);
     }
+
+    public Long getCartSum(Long userId) {
+        final long[] sum = {0};
+        cartRepository.findByUserId(userId).forEach((el) -> sum[0] += el.getPrice() * el.getCount());
+
+        return sum[0]; }
 }
