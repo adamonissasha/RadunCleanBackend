@@ -24,11 +24,4 @@ public class User {
 //    @CollectionTable(name="user_role", joinColumns = @JoinColumn(name = "user_id"))
 
     private String roles;
-    public User(String FIO, String phone, String email, String password) {
-        this.FIO = FIO;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-    }
-
 }

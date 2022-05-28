@@ -14,9 +14,9 @@ public class CartController {
     @Autowired
     CartService cartService;
 
-    @GetMapping("/cart")
-    public List<Cart> getCart () {
-        return cartService.getCart();
+    @GetMapping("/cart/{userId}")
+    public List<Cart> getCart (@PathVariable Long userId) {
+        return cartService.getCart(userId);
     }
 
     @PostMapping("addElementToCart")
@@ -33,6 +33,12 @@ public class CartController {
     @GetMapping("/cartSum/{userId}")
     public Long getCartSum (@PathVariable Long userId) {
         return cartService.getCartSum(userId);
+    }
+
+    @DeleteMapping("clearCart/{id}")
+    public String clearCart(@PathVariable Long id){
+        cartService.clearCart(id);
+        return "Cart of " + id + " user successfully deleted";
     }
 }
 

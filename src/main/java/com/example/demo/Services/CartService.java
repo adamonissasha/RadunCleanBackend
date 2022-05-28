@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class CartService {
     @Autowired
     CartRepository cartRepository;
-    public List<Cart> getCart() {
-        return cartRepository.findAll();
+
+    public List<Cart> getCart(Long userId) {
+
+        return cartRepository.findByUserId(userId);
     }
 
     public void addElementToCart(Cart cart) {
@@ -30,5 +33,10 @@ public class CartService {
         final long[] sum = {0};
         cartRepository.findByUserId(userId).forEach((el) -> sum[0] += el.getPrice() * el.getCount());
 
-        return sum[0]; }
+        return sum[0];
+    }
+
+    public void clearCart(Long userId) {
+        cartRepository.deleteAll(cartRepository.findByUserId(userId));
+    }
 }
